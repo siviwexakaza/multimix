@@ -1,20 +1,43 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Hello there!</ion-card-title>
+        <ion-card-subtitle>Enter your nickname and pick a chatroom</ion-card-subtitle>
+        
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-item>
+          <ion-input [(ngModel)]="displayName" placeholder="Nickname"></ion-input>
+        </ion-item>
+
+        <ion-list>
+        
+        
+          <ion-item>
+            <ion-label>Chatroom</ion-label>
+            <ion-select [(ngModel)]="roomName" value="General" okText="Okay" cancelText="Cancel">
+              <ion-select-option value="General">General</ion-select-option>
+              <ion-select-option value="Area 51">Area 51</ion-select-option>
+              <ion-select-option value="Laugh Factory">Laugh Factory</ion-select-option>
+              <ion-select-option value="Mad House">Mad House</ion-select-option>
+              
+            </ion-select>
+          </ion-item>
+        
+        </ion-list>
+
+        <ion-button (click)="join()" [disabled]="displayName===undefined || roomName===undefined" color="dark" expand="block">Join</ion-button>
+        <p style="margin-top: 0.3em;">
+          Made with ❤ by <a href="https://siviwe.netlify.com/">Siviwe Xakaza</a>
+        </p>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

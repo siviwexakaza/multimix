@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" Type="ios">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-weight: 100">
+       {{room}} ({{count}})
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="chatscreen" >
+  <p *ngIf="room ===''" style="color: white; text-align: center; margin-top: 50%;">
+    <ion-spinner color="light" name="lines"></ion-spinner>
+  </p>
+  
+  <div #scroller id="chatMessages">
+
+      <ion-grid>
+        <ion-row *ngFor="let message of messages">
+    
+          <ion-col size="9" *ngIf="this.store.user.displayName !== message.dispalyName" class="message recieved">
+            <b>{{message.dispalyName}}</b><br>
+            <span>{{message.msg}}</span>
+            <div class="time" text-right><br>
+                {{message.time}}
+            </div>
+
+          </ion-col>
+
+          <ion-col offset="3" size="9" *ngIf="this.store.user.displayName == message.dispalyName" class="message sent">
+            <b>{{message.dispalyName}}</b><br>
+            <span>{{message.msg}}</span>
+            <div class="time" text-right><br>
+                {{message.time}}
+            </div>
+  
+            </ion-col>
+
+        </ion-row>
+        </ion-grid>
+
+    
+
+  </div>
+
+  <div style="margin-top: 120px;">
+
+    <h1>
+      <!--DO NOT REMOVE THIS-->
+    </h1>
+
+  </div>
+
+</ion-content>
+
+
+
+  <ion-footer>
+      <ion-toolbar color="light">
+        <ion-row align-items-center no-padding>
+          <ion-col size="10">
+            <textarea autosize maxRows="3" [(ngModel)]="content" class="msgIn" placeholder="Write a message..."></textarea>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" fill="clear" color="primary" [disabled]="content===''" class="btnSend" (click)="sendMessage()">
+              <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+  
+          </ion-col>
+  
+        </ion-row>
+  
+      </ion-toolbar>
+  
+  
+    </ion-footer>
